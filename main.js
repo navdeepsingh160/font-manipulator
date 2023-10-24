@@ -1,3 +1,7 @@
+difference=0;
+rwx=0;
+lwx=0;
+
 function setup(){
     canvas  =createCanvas(550, 450);
     canvas.position(560, 150);
@@ -16,16 +20,23 @@ function modelLoaded(){
 }
 
 
-function gotPoses(){
+function gotPoses(results){
     if (results.length > 0)
     {
         console.log(results);
-
+        lwx=results[0].pose.leftWrist.x;
+        rwx=results[0].pose.rightWrist.x;
+        difference=floor(lwx-rwx);
+        console.log(difference);
     }
 }
 
 
 function draw(){
     background("blue");
+
+    fill("red");
+    text("navdeep singh", 50, 400);
+    textSize(difference);
 
 }
